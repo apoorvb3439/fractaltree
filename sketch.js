@@ -1,5 +1,5 @@
 let snows=[];
-let number=20;
+let number=15;
 let tree=[];
 let leaves=[];
 let len;
@@ -13,7 +13,7 @@ function setup() {
 	tree[0]=new Branch(a,b);
 	createSnow();
 	timer=0;
-	setInterval(createSnow,3000);
+	setInterval(createSnow,1500);
 }
 
 function createSnow(){
@@ -29,8 +29,8 @@ function drawSnow(){
 }
 
 function deleteExtraSnow(){
-	if(snows.length>500){
-		snows.splice(0,200);
+	if(snows.length>200){
+		snows.splice(0,50);
 	}
 }
 
