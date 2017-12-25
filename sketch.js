@@ -1,3 +1,5 @@
+let snows=[];
+let number=20;
 let tree=[];
 let leaves=[];
 let len;
@@ -9,7 +11,34 @@ function setup() {
 	let a=createVector(0,0);
 	let b=createVector(0,-len);
 	tree[0]=new Branch(a,b);
+	createSnow();
+	timer=0;
+	setInterval(createSnow,3000);
+}
 
+function createSnow(){
+	for(let i=0; i<number; i++){
+		snows.push(new Snow(random(0,width),random(200),random(PI)));
+	}
+}
+
+function drawSnow(){
+	for(let s of snows){
+		s.show();
+	}
+}
+
+function deleteExtraSnow(){
+	if(snows.length>500){
+		snows.splice(0,200);
+	}
+}
+
+
+function snowfall(){
+	for(let s of snows){
+		s.y+=random(1,2);
+	}
 }
 
 function mousePressed(){
@@ -37,15 +66,18 @@ function drawLeaves(){
 	}
 }
 
+
 function draw() {
-	background(250);
+	background(0);
 	translate(width/2,height);
 	for(let i=tree.length-1; i>=0; i--){
 		tree[i].show();
 		tree[i].jitter();
 	}
 	drawLeaves();
-
+	drawSnow();
+	snowfall();
+	deleteExtraSnow();
 }
 
 function Branch(begin, end){
@@ -85,11 +117,46 @@ function Branch(begin, end){
 		}
 	}
 
-
 	this.show=function(){
 		stroke(this.col);
 		var d=p5.Vector.dist(this.begin,this.end);
 		strokeWeight(map(d,0,height,1,20));
 		line(begin.x,begin.y,end.x,end.y);
+	}
+
+}
+
+function Snow(posx,posy,angle){
+	this.x=posx;
+	this.y=posy;
+	this.angle=angle||0;
+	this.show=function(){
+
+		push();
+		strokeWeight(1.2);
+		let flakelen=10;
+		let newlen=flakelen/3;
+		translate(-width/2,-height);
+		stroke(202,228,227);
+		translate(this.x,this.y);
+		rotate(this.angle);
+		push();
+		for(let i=0; i<6; i++){
+			line(0,0,0,-flakelen+newlen);
+
+			push();
+				translate(0,-flakelen+newlen);
+				line(0,0,0,-newlen);
+				rotate(PI/3);
+				line(0,0,0,-newlen);
+				rotate(-2*PI/3);
+				line(0,0,0,-newlen);
+			pop();
+			rotate(PI/3);
+		}
+		pop();
+
+		pop();
+
 	}
 }
