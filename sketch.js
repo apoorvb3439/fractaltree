@@ -68,7 +68,7 @@ function drawLeaves(){
 
 
 function draw() {
-	background(0);
+	background(250);
 	translate(width/2,height);
 	for(let i=tree.length-1; i>=0; i--){
 		tree[i].show();
@@ -137,7 +137,7 @@ function Snow(posx,posy,angle){
 		let flakelen=10;
 		let newlen=flakelen/3;
 		translate(-width/2,-height);
-		stroke(202,228,227);
+		stroke(0,228,227);
 		translate(this.x,this.y);
 		rotate(this.angle);
 		push();
