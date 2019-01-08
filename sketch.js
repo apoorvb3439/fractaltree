@@ -68,7 +68,7 @@ function drawLeaves(){
 
 
 function draw() {
-	background(250);
+	background(0);
 	translate(width/2,height);
 	for(let i=tree.length-1; i>=0; i--){
 		tree[i].show();
