@@ -5,6 +5,9 @@ let leaves=[];
 let len;
 let level=0;
 let timer=0;
+
+let backgroundColor=250;
+
 function setup() {
 	len=windowWidth/9;
 	createCanvas(windowWidth,windowHeight);
@@ -68,7 +71,7 @@ function drawLeaves(){
 
 
 function draw() {
-	background(0);
+	background(backgroundColor);
 	translate(width/2,height);
 	for(let i=tree.length-1; i>=0; i--){
 		tree[i].show();
