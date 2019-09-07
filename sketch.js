@@ -6,7 +6,8 @@ let len;
 let level=0;
 let timer=0;
 
-let backgroundColor=250;
+//background color property
+let backgroundColor=10;
 
 function setup() {
 	len=windowWidth/9;
